@@ -4,13 +4,14 @@ before_script:
   - cd src
 
 buildandrun:
-    script:
-      - make main
-      - ./main
+  script:
+    - make main
+    - ./main
 
 callgrind:
-    script:
-      - make
-      - valgrind --tool=callgrind --callgrind-out-file=profile.out -v --dump-instr=yes --trace-jump=yes --smc-check=all-non-file ./main
-    artifacts:
+  script:
+    - make
+    - valgrind --tool=callgrind --callgrind-out-file=profile.out -v --dump-instr=yes --trace-jump=yes --smc-check=all-non-file ./main
+  artifacts:
+    paths:
       - src/profile.out
