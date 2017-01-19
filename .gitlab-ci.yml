@@ -1,0 +1,16 @@
+image: gitlab-registry.cern.ch/pseyfert/lxplus-like-dockerfile
+
+before_script:
+  - cd src
+
+buildandrun:
+    script:
+      - make main
+      - ./main
+
+callgrind:
+    script:
+      - make
+      - valgrind --tool=callgrind --callgrind-out-file=profile.out -v --dump-instr=yes --trace-jump=yes --smc-check=all-non-file ./main
+    artifacts:
+      - src/profile.out
