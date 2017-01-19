@@ -17,7 +17,7 @@ int main() {
     float n = thenew->value(f);
     float o = theold->value(f);
     if (fabs(n-o) > 0.000002) {
-      std::cout << "shit: " << o << "\t" << n << "\t\tdiff=" << n-o << std::endl;
+      std::cout << "large deviation: " << o << "\t" << n << "\t\tdiff=" << n-o << std::endl;
       break;
     }
   }

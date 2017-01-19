@@ -33,8 +33,6 @@ NewFunc::NewFunc( std::initializer_list<float> x ) :
     if (!std::is_sorted(m_xedges.begin(),m_xedges.end())) {
       throw 11;
     }
-    m_begin = m_xedges.begin();
-    m_end = m_xedges.end();
   }
 
 //============================================================================
@@ -44,19 +42,19 @@ float
 NewFunc::value( const float x ) const
 {
   // out of range check
-  if (x<=(*(m_begin))) return 0.f;
-  if (x>=(*(m_end-1))) return 1.f;
+  if (x<=(*(m_xedges.begin()))) return 0.f;
+  if (x>=(*(m_xedges.end()-1))) return 1.f;
 
   // iterator to the first element that is not smaller than x
   // may be end() - if x is larger than the last element
   // may be begin() - if x is smaller than the first element
-  auto up = std::lower_bound (m_begin, m_end, x);
+  auto up = std::lower_bound (m_xedges.begin(), m_xedges.end(), x);
   // iterator to the last element that is smaller than x
   // (may be out of range)
   auto low = up - 1;
 
   // y-value for the lower edge of the x-bin we're in
-  float edge = m_width * (low - m_begin);
+  float edge = m_width * (low - m_xedges.begin());
 
   // by what fraction did we enter the x bin
   float add  = m_width * (x - (*low))/((*up) - (*low));

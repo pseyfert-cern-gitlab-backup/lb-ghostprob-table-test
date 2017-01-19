@@ -59,10 +59,6 @@ namespace Track
 
     // width of y bins
     float                                    m_width;
-
-    // never changes after initialization
-    std::vector<float>::const_iterator       m_begin;
-    std::vector<float>::const_iterator       m_end;
   };
 
 }
