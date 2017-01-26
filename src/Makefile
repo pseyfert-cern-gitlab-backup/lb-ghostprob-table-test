@@ -5,3 +5,5 @@ CC=g++
 
 main: main.o newfunc.o oldfunc.o
 
+profile: main
+	valgrind --tool=callgrind --callgrind-out-file=profile.out -v --dump-instr=yes --trace-jump=yes --smc-check=all-non-file ./main

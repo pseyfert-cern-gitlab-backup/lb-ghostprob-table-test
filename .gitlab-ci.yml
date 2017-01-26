@@ -11,7 +11,7 @@ buildandrun:
 callgrind:
   script:
     - make
-    - valgrind --tool=callgrind --callgrind-out-file=profile.out -v --dump-instr=yes --trace-jump=yes --smc-check=all-non-file ./main
+    - make profile
   artifacts:
     paths:
       - src/profile.out
